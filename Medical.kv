@@ -1,0 +1,17 @@
+<MainScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Pantalla Principal'
+        Button:
+            text: 'Abrir cámara'
+            on_press: root.switch_to_camera()
+
+<CameraScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Image:
+            id: label_video
+
+        Label:
+            text: 'Pantalla Camara'
