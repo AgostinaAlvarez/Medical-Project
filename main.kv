@@ -1,0 +1,52 @@
+#Screens
+
+<MainScreen>:
+    ScreenManager:
+        id: screen_manager
+        HomeScreen:
+            name: 'home_screen'
+        SearchUser
+            name: 'search_user_screen'
+        CreateUser:
+            name: 'create_user_screen'
+        SearchUserCamera:
+            name:'search_user_camera'
+
+
+
+<HomeScreen>:
+    BoxLayout:
+        Button:
+            text: 'buscar usuario'
+            on_release: root.switch_screen_search_user()
+        Button:
+            text: 'crear usuario'
+            on_release: root.switch_screen_create_user()
+
+<SearchUser>:
+    BoxLayout:
+        orientation:'vertical'
+        Button:
+            text: 'Volver atras'
+        Label:
+            text:'DNI'
+        Button:
+            text:'Siguiente'
+            on_release: root.switch_screen_camera()
+
+<SearchUserCamera>
+
+
+<CreateUser>:
+    BoxLayout:
+        orientation:'vertical'
+        Button:
+            text:'volver atras'
+        Label:
+            text:'DNI'
+        Button:
+            text:'siguiente'
+
+
+
+#Components
