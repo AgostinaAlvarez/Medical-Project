@@ -25,7 +25,16 @@ class SearchUserCamera(Screen):
         layout.add_widget(self.label_video)
         self.add_widget(layout)
 
+    def reset(self):
+        global parpadeo, conteo, muestra, step
+        parpadeo = False
+        conteo = 0
+        muestra = 0
+        step = 0
+
+
     def on_enter(self):
+        self.reset()  # Llamada al método reset al entrar en la pantalla
         self.mp_face_mesh = mp.solutions.face_mesh
         self.face_mesh = self.mp_face_mesh.FaceMesh(max_num_faces=1)
         self.capture = cv2.VideoCapture(0)
@@ -132,8 +141,10 @@ class SearchUserCamera(Screen):
                                             if anc < 0: anc = 0
                                             if alt < 0: alt = 0
 
+
                                             if step == 0:
                                                 # Draw
+                                                #esta parte es la que contabiliza
                                                 cv2.rectangle(frame, (xi, yi, anc, alt), (255, 0, 255), 2)
 
                                                 # imagen
@@ -152,16 +163,16 @@ class SearchUserCamera(Screen):
                                                     frame[165:165 + alcheck, 1105:1105 + ancheck] = Check
 
 
-                                                    if longitud1 <= 20 and longitud2 <= 20 and parpadeo == False :
-                                                        print('parpadeo')
+                                                    if longitud1 <= 15 and longitud2 <= 15 and parpadeo == False :
+                                                        #print('parpadeo')
                                                         parpadeo = True
                                                         if conteo == 3:
                                                             conteo = 3
                                                         else:
                                                             conteo = conteo + 1
 
-                                                    elif longitud1 > 20 and longitud2 > 20 and parpadeo == True:
-                                                        print('no parpadeo')
+                                                    elif longitud1 > 15 and longitud2 > 15 and parpadeo == True:
+                                                        #print('no parpadeo')
                                                         parpadeo = False
 
 
@@ -171,6 +182,9 @@ class SearchUserCamera(Screen):
                                                         alcheck, ancheck, c = Check.shape
                                                         frame[385:385 + alcheck, 1105:1105 + ancheck] = Check
                                                         cv2.rectangle(frame, (xi, yi, anc, alt), (0, 255, 0), 2)
+                                                        self.reset()  # Llamada al método reset cuando se alcanzan tres parpadeos
+                                                        self.manager.current = 'home_screen'  # Cambia a otra pantalla
+                                                        #print('cambiar panntalla')
 
 
             buf1 = cv2.flip(frame, 0)
