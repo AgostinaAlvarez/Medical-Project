@@ -151,8 +151,6 @@ class SearchUserCamera(Screen):
 
                                                     frame[165:165 + alcheck, 1105:1105 + ancheck] = Check
 
-                                                    #print('longitud 1')
-                                                    #print(longitud1)
 
                                                     if longitud1 <= 20 and longitud2 <= 20 and parpadeo == False :
                                                         print('parpadeo')
@@ -172,7 +170,6 @@ class SearchUserCamera(Screen):
                                                     if conteo >= 3:
                                                         alcheck, ancheck, c = Check.shape
                                                         frame[385:385 + alcheck, 1105:1105 + ancheck] = Check
-
                                                         cv2.rectangle(frame, (xi, yi, anc, alt), (0, 255, 0), 2)
 
 
